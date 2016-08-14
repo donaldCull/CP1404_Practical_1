@@ -2,13 +2,13 @@ __author__ = 'Donald Cull'
 
 def main():
     name, name_length = get_name()
-    display_name(name, name_length)
+    letter_frequency = int(input("What frequency of letters do you want: "))
+    display_name(name, name_length, letter_frequency)
 
 
-def display_name(name, name_length):
-    for char in range(name_length):
-        if char % 2 == 0:
-            print(name[char])
+def display_name(name, name_length, step):
+    for i in range(0, name_length, step):
+            print(name[i], end=" ")
 
 
 def get_name():
