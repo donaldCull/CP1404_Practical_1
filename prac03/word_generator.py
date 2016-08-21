@@ -11,20 +11,27 @@ import random
 VOWELS = "aeiou"
 CONSONANTS = "bcdfghjklmnpqrstvwxyz"
 
-# word_format = input("Please enter # for consonants and % for vowels:")
-# while word_format.isdigit():
-    # word_format = input("Please enter # for consonants and % for vowels:")
+
+def is_valid_format():
+    word_format = input("Please enter # for consonants and % for vowels:")
+    for char in word_format:
+        if char != "c" or char != "v":
+            return false
+        else:
+
+
+
+is_valid_format()
 word = ""
-word_size = random.randint(1, 20)
-for i in range(word_size):
-    word += random.choice(CONSONANTS)
-    word += random.choice(VOWELS)
-#for kind in word_format:
- #   if kind == "#":
-    #    word += random.choice(CONSONANTS)
-  #  elif kind == "%":
-    #    word += random.choice(VOWELS)
-   # else:
-    #    word += kind
+#word_size = random.randint(1, 20)
+#for i in range(word_size):
+ #   word += random.choice(CONSONANTS)
+  #  word += random.choice(VOWELS)
+for kind in word_format:
+    if kind == "c":
+        word += random.choice(CONSONANTS)
+    elif kind == "v":
+        word += random.choice(VOWELS)
+
 
 print(word)
