@@ -1,16 +1,17 @@
 __author__ = 'Donald Cull'
 import random
-number_of_quickpicks = int(input("How many quickpicks?"))
-quick_pick_row = []
 
-for i in range(number_of_quickpicks):
-    print("\n")
-    for i in range(6):
-        quick_number = random.randint(1,45)
-        if quick_number in quick_pick_row:
-            quick_number = random.randint(1, 45)
-        else:
-            quick_pick_row.append(quick_number)
+MIN_NUMBER = 1
+MAX_NUMBER = 45
+NUMBERS_PER_ROW = 6
+rows = int(input("how many rows? "))
+quick_pick_row = []
+for row in range(rows):
+    for i in range(NUMBERS_PER_ROW):
+        number = random.randint(MIN_NUMBER, MAX_NUMBER)
+        while number in quick_pick_row:
+            number = random.randint(MIN_NUMBER, MAX_NUMBER)
+        quick_pick_row.append(number)
+    quick_pick_row.sort()
     print(quick_pick_row)
     quick_pick_row.clear()
-
