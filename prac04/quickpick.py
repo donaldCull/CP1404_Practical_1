@@ -13,5 +13,5 @@ for row in range(rows):
             number = random.randint(MIN_NUMBER, MAX_NUMBER)
         quick_pick_row.append(number)
     quick_pick_row.sort()
-    print(quick_pick_row)
+    print("{}".format(quick_pick_row))
     quick_pick_row.clear()
