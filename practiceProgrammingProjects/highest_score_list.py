@@ -1,10 +1,10 @@
 __author__ = 'Donald Cull'
-# scores = []
-# score = int(input("Score: "))
-# while score > 0:
-#     scores.append(score)
-#     score = int(input("Score: "))
-# print("Your highest score is", max(scores))
+scores = []
+score = int(input("Score: "))
+while score >= 0:
+    scores.append(score)
+    score = int(input("Score: "))
+print("Your highest score is", max(scores))
 
 # for i in range(1788, 2016, 4):
 #     print(i)
