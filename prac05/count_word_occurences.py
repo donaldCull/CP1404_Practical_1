@@ -9,8 +9,8 @@ for word in phrase:
         my_words[word] = 1
 longest_word_length = max(len(word) for word in my_words)
 sorted(my_words)
-for key, value in my_words.items():
-    print("{1:{0:}}: {2}".format(longest_word_length, key, value))
+for word, occurences in my_words.items():
+    print("{1:{0:}}: {2}".format(longest_word_length, word, occurences))
 
 # keys = MY_WORDS.keys()
 # print(keys)
