@@ -20,7 +20,7 @@ for people in range(AMOUNT_PEOPLE):
     name = input("Name: ")
     birth_strings = (input("Birth like 11/07/1993: ")).split("/")
     print(birth_strings)
-    birth_numbers = [int(number) for number in birth_strings ]
+    birth_numbers = [int(number) for number in birth_strings]
     age = CURRENT_YEAR - birth_numbers[2]
     print(age)
     birth_details[name]= birth_numbers, age
