@@ -1,18 +1,18 @@
-<Widget>:
-    canvas.before:
-        Color:
-            rgba: 0, 0, 0, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-    color: 0, 0, 0.7, 1
+#<Widget>:
+#    canvas.before:
+#        Color:
+#            rgba: 0, 0, 0, 1
+#        Rectangle:
+#            pos: self.pos
+#            size: self.size
+#    color: 0, 0, 0.7, 1
 
 <Button>:
     font_size: 56
 #    background_normal: ''
     canvas.after:
         Color:
-            rgba: 1, 0, 0, 0
+            rgba: 1, 1, 0, 1
 
 
 BoxLayout:
@@ -23,6 +23,9 @@ BoxLayout:
             id: input_number
             font_size: 48
             on_text: app.handle_calculate()
+            color: (1 ,0, 0, 1)
+            background_color: (0, 1, 0, 1)
+
         BoxLayout:
             orientation: 'vertical'
             size_hint_x: 0.25
