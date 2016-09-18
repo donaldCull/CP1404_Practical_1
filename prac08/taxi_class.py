@@ -1,4 +1,5 @@
 from random import randint
+
 __author__ = 'Donald Cull'
 """
 CP1404/CP5632 Practical
@@ -66,15 +67,40 @@ class Taxi(Car):
 
 class UnreliableCar(Car):
     """specialised version of Car that includes reliability of the car instance"""
-
     def __init__(self, name, fuel):
         """Initialises a unreliable car instance, based on parent class car"""
         super().__init__(name, fuel)
-        self.car_reliability = 50
+        self.car_reliability_rating = 50
 
     def drive(self, distance):
         reliability = randint(0, 100)
-        if reliability < self.car_reliability:
-            distance_driven = super().drive(distance)
+        if reliability < self.car_reliability_rating:
+            super().drive(distance)
+            return distance
         else:
             return "Car broke down"
+
+
+class SilverServiceTaxi(Taxi):
+    """Specialised version of taxi that includes fanciness of the taxi instance """
+
+    def __init__(self, name, fuel):
+        super().__init__(name, fuel)
+
+        self.fanciness = 2.0
+        self.flagfall = 4.50
+
+    def get_fare(self):
+        """ get the price for the taxi trip """
+        super().get_fare()
+        overall_price_per_km = self.fanciness * self.price_per_km
+        return overall_price_per_km * self.current_fare_distance + self.flagfall
+
+    def start_fare(self):
+        """ begin a new fare """
+        super().start_fare()
+
+    def drive(self, distance):
+        """ drive like parent Car but calculate fare distance as well"""
+        super().drive(distance)
+        return distance
