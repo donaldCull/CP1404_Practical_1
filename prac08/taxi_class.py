@@ -1,9 +1,9 @@
+from random import randint
 __author__ = 'Donald Cull'
 """
 CP1404/CP5632 Practical
 Car class
 """
-from random import randint
 
 
 class Car:
@@ -70,30 +70,11 @@ class UnreliableCar(Car):
     def __init__(self, name, fuel):
         """Initialises a unreliable car instance, based on parent class car"""
         super().__init__(name, fuel)
-        self.car_reliability = 2
+        self.car_reliability = 50
 
     def drive(self, distance):
-
-        distance_driven = super().drive(distance)
         reliability = randint(0, 100)
         if reliability < self.car_reliability:
-            if distance_driven > self.fuel:
-                distance_driven = self.fuel
-                self.fuel = 0
-                print("Fuel < distance")
-            else:
-                self.fuel -= distance_driven
-                distance_driven = distance_driven
-            self.odometer += distance_driven
-            print("Fuel being subtracted")
-            return distance_driven
-        #if the car breaks down distance should be 0
+            distance_driven = super().drive(distance)
         else:
-            distance_driven = 0
-            return distance_driven
-
-
-new_car = UnreliableCar("The Bomb", 100)
-print(new_car)
-print(new_car.drive(50))
-print(new_car)
+            return "Car broke down"
