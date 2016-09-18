@@ -21,7 +21,11 @@ def main():
             while kilometres < 0:
                 print("Distance must be >= 0")
                 kilometres = int(input("How many km do you wish to drive? "))
-            print("The car drove {}km".format(new_car.drive(kilometres)))
+            distance = new_car.drive(kilometres)
+            if new_car.fuel == 0:
+                print("The car drove {}km and ran out of fuel".format(distance))
+            else:
+                print("The car drove {}km".format(distance))
 
 
 main()
