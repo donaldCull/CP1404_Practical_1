@@ -1,9 +1,10 @@
+from random import randint
+
 __author__ = 'Donald Cull'
 """
 CP1404/CP5632 Practical
 Car class
 """
-from random import randint
 
 
 class Car:
@@ -37,16 +38,16 @@ class Car:
 
 class Taxi(Car):
     """ specialised version of a Car that includes fare costs """
-
+    price_per_km = 1.20
     def __init__(self, name, fuel):
         """ initialise a Taxi instance, based on parent class Car """
         super().__init__(name, fuel)
-        self.price_per_km = 1.20
+
         self.current_fare_distance = 0
 
     def __str__(self):
         """ return a string representation like a car but with current fare distance"""
-        return "{}, ${:.2f}/km, {}km on current fare".format(super().__str__(), self.price_per_km,
+        return "{}, ${:.2f}/km, {}km on current fare".format(super().__str__(), Taxi.price_per_km,
                                                              self.current_fare_distance)
 
     def get_fare(self):
@@ -66,34 +67,30 @@ class Taxi(Car):
 
 class UnreliableCar(Car):
     """specialised version of Car that includes reliability of the car instance"""
-
     def __init__(self, name, fuel):
         """Initialises a unreliable car instance, based on parent class car"""
         super().__init__(name, fuel)
-        self.car_reliability = 2
+        self.car_reliability_rating = 50
 
     def drive(self, distance):
-
-        distance_driven = super().drive(distance)
         reliability = randint(0, 100)
-        if reliability < self.car_reliability:
-            if distance_driven > self.fuel:
-                distance_driven = self.fuel
-                self.fuel = 0
-                print("Fuel < distance")
-            else:
-                self.fuel -= distance_driven
-                distance_driven = distance_driven
-            self.odometer += distance_driven
-            print("Fuel being subtracted")
-            return distance_driven
-        #if the car breaks down distance should be 0
+        if reliability < self.car_reliability_rating:
+            super().drive(distance)
+            return distance
         else:
-            distance_driven = 0
-            return distance_driven
+            return "Car broke down!!"
 
 
-new_car = UnreliableCar("The Bomb", 100)
-print(new_car)
-print(new_car.drive(50))
-print(new_car)
+class SilverServiceTaxi(Taxi):
+    """Specialised version of taxi that includes fanciness of the taxi instance """
+    fanciness = 2.0
+    flagfall = 4.50
+    def __init__(self, name, fuel):
+        super().__init__(name, fuel)
+
+
+    def get_fare(self):
+        """ get the price for the taxi trip """
+        super().get_fare()
+        overall_price_per_km = SilverServiceTaxi.fanciness * Taxi.price_per_km
+        return overall_price_per_km * self.current_fare_distance + SilverServiceTaxi.flagfall
