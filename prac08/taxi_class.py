@@ -38,16 +38,16 @@ class Car:
 
 class Taxi(Car):
     """ specialised version of a Car that includes fare costs """
-
+    price_per_km = 1.20
     def __init__(self, name, fuel):
         """ initialise a Taxi instance, based on parent class Car """
         super().__init__(name, fuel)
-        self.price_per_km = 1.20
+
         self.current_fare_distance = 0
 
     def __str__(self):
         """ return a string representation like a car but with current fare distance"""
-        return "{}, ${:.2f}/km, {}km on current fare".format(super().__str__(), self.price_per_km,
+        return "{}, ${:.2f}/km, {}km on current fare".format(super().__str__(), Taxi.price_per_km,
                                                              self.current_fare_distance)
 
     def get_fare(self):
@@ -83,15 +83,14 @@ class UnreliableCar(Car):
 
 class SilverServiceTaxi(Taxi):
     """Specialised version of taxi that includes fanciness of the taxi instance """
-
+    fanciness = 2.0
+    flagfall = 4.50
     def __init__(self, name, fuel):
         super().__init__(name, fuel)
 
-        self.fanciness = 2.0
-        self.flagfall = 4.50
 
     def get_fare(self):
         """ get the price for the taxi trip """
         super().get_fare()
-        overall_price_per_km = self.fanciness * self.price_per_km
-        return overall_price_per_km * self.current_fare_distance + self.flagfall
+        overall_price_per_km = SilverServiceTaxi.fanciness * Taxi.price_per_km
+        return overall_price_per_km * self.current_fare_distance + SilverServiceTaxi.flagfall
