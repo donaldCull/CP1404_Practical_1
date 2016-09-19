@@ -78,7 +78,7 @@ class UnreliableCar(Car):
             super().drive(distance)
             return distance
         else:
-            return "Car broke down"
+            return "Car broke down!!"
 
 
 class SilverServiceTaxi(Taxi):
@@ -95,12 +95,3 @@ class SilverServiceTaxi(Taxi):
         super().get_fare()
         overall_price_per_km = self.fanciness * self.price_per_km
         return overall_price_per_km * self.current_fare_distance + self.flagfall
-
-    def start_fare(self):
-        """ begin a new fare """
-        super().start_fare()
-
-    def drive(self, distance):
-        """ drive like parent Car but calculate fare distance as well"""
-        super().drive(distance)
-        return distance
