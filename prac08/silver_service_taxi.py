@@ -1,13 +1,14 @@
 from prac08.taxi_class import SilverServiceTaxi
+from prac08.taxi_class import Taxi
 
 MENU = "q)uit, c)hoose taxi, d)rive"
 VALID_MENU_CHOICES = ['q', 'c', 'd']
-taxis = [SilverServiceTaxi('Limo', 100), SilverServiceTaxi('Prius', 100), SilverServiceTaxi('Hummer', 200)]
+taxis = [Taxi('Prius', 100), SilverServiceTaxi('Limo', 100, 2), SilverServiceTaxi('Hummer', 200, 4)]
 bill_to_date = 0
 print("Let's Drive!")
 print(MENU)
-menu_choice = input(">>> ")
-# menu_choice = 'c'
+# menu_choice = input(">>> ")
+menu_choice = 'c'
 while menu_choice != 'q':
     if menu_choice not in VALID_MENU_CHOICES:
         print("Invalid option")

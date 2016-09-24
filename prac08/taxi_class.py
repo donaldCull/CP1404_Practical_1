@@ -39,11 +39,11 @@ class Car:
 class Taxi(Car):
     """ specialised version of a Car that includes fare costs """
     price_per_km = 1.20
+    current_fare_distance = 0
+
     def __init__(self, name, fuel):
         """ initialise a Taxi instance, based on parent class Car """
         super().__init__(name, fuel)
-
-        self.current_fare_distance = 0
 
     def __str__(self):
         """ return a string representation like a car but with current fare distance"""
@@ -56,7 +56,7 @@ class Taxi(Car):
 
     def start_fare(self):
         """ begin a new fare """
-        self.current_fare_distance = 0
+        Taxi.current_fare_distance = 0
 
     def drive(self, distance):
         """ drive like parent Car but calculate fare distance as well"""
@@ -67,6 +67,7 @@ class Taxi(Car):
 
 class UnreliableCar(Car):
     """specialised version of Car that includes reliability of the car instance"""
+
     def __init__(self, name, fuel):
         """Initialises a unreliable car instance, based on parent class car"""
         super().__init__(name, fuel)
@@ -83,14 +84,24 @@ class UnreliableCar(Car):
 
 class SilverServiceTaxi(Taxi):
     """Specialised version of taxi that includes fanciness of the taxi instance """
-    fanciness = 2.0
-    flagfall = 4.50
-    def __init__(self, name, fuel):
-        super().__init__(name, fuel)
+    flag_fall = 4.50
 
+    def __init__(self, name, fuel, fanciness):
+        """
+        Initialises a Silver service taxi based on its parent class car
+        :param name:
+        :param fuel:
+        """
+        fanciness_modifier = fanciness
+        self.overall_price_per_km = fanciness_modifier * Taxi.price_per_km
+        super().__init__(name, fuel)
 
     def get_fare(self):
         """ get the price for the taxi trip """
         super().get_fare()
-        overall_price_per_km = SilverServiceTaxi.fanciness * Taxi.price_per_km
-        return overall_price_per_km * self.current_fare_distance + SilverServiceTaxi.flagfall
+        return (self.overall_price_per_km * Taxi.current_fare_distance) + SilverServiceTaxi.flag_fall
+
+    def __str__(self):
+        """Returns details about the taxi"""
+        return "{}, ${:.2f}/km, {}km on current fare".format(super().__str__(), self.overall_price_per_km,
+                                                             Taxi.current_fare_distance)
