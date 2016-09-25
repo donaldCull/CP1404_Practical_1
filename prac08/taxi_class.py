@@ -47,8 +47,8 @@ class Taxi(Car):
 
     def __str__(self):
         """ return a string representation like a car but with current fare distance"""
-        return "{}, ${:.2f}/km, {}km on current fare".format(super().__str__(), Taxi.price_per_km,
-                                                             self.current_fare_distance)
+        return "{}, {}km on current fare, ${:.2f}/km".format(super().__str__(), self.current_fare_distance,
+                                                             Taxi.price_per_km )
 
     def get_fare(self):
         """ get the price for the taxi trip """
@@ -92,8 +92,7 @@ class SilverServiceTaxi(Taxi):
         :param name:
         :param fuel:
         """
-        fanciness_modifier = fanciness
-        self.overall_price_per_km = fanciness_modifier * Taxi.price_per_km
+        self.overall_price_per_km = fanciness * Taxi.price_per_km
         super().__init__(name, fuel)
 
     def get_fare(self):
@@ -103,5 +102,6 @@ class SilverServiceTaxi(Taxi):
 
     def __str__(self):
         """Returns details about the taxi"""
-        return "{}, ${:.2f}/km, {}km on current fare".format(super().__str__(), self.overall_price_per_km,
-                                                             Taxi.current_fare_distance)
+        Taxi.price_per_km = self.overall_price_per_km
+        return "{} plus flagfall of ${:.2f}".format(super().__str__(), SilverServiceTaxi.flag_fall)
+
