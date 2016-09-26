@@ -1,5 +1,4 @@
-from prac08.taxi_class import SilverServiceTaxi
-from prac08.taxi_class import Taxi
+from prac08.taxi_class import Taxi, SilverServiceTaxi
 
 MENU = "q)uit, c)hoose taxi, d)rive"
 VALID_MENU_CHOICES = ['q', 'c', 'd']
@@ -7,8 +6,7 @@ taxis = [Taxi('Prius', 100), SilverServiceTaxi('Limo', 100, 2), SilverServiceTax
 bill_to_date = 0
 print("Let's Drive!")
 print(MENU)
-# menu_choice = input(">>> ")
-menu_choice = 'c'
+menu_choice = input(">>> ")
 while menu_choice != 'q':
     if menu_choice not in VALID_MENU_CHOICES:
         print("Invalid option")
@@ -22,7 +20,6 @@ while menu_choice != 'q':
             print("{} - {}".format(number, taxi))
             available_taxi_numbers.append(number)
         taxi_number = int(input("Choose taxi: "))
-        # taxi_number = 0
         while taxi_number not in available_taxi_numbers:
             print("Invalid number")
             taxi_number = int(input("Choose taxi: "))
@@ -30,12 +27,16 @@ while menu_choice != 'q':
         print("Bill to date: ${:.2f}".format(bill_to_date))
         print(MENU)
         menu_choice = input(">>> ")
-        menu_choice = 'd'
+
     elif menu_choice == 'd':
         distance_requested = int(input("Drive how far? "))
-        # distance_requested = 333
         taxi_choice.drive(distance_requested)
         print("Your {} trip cost you ${:.2f}".format(taxi_choice.name, taxi_choice.get_fare()))
         bill_to_date += taxi_choice.get_fare()
+        print("Bill to date: ${:.2f}".format(bill_to_date))
         print(MENU)
         menu_choice = input(">>> ")
+
+print("Total trip cost: ${:.2f}\nTaxis are now:".format(bill_to_date))
+for number, taxi in enumerate(taxis):
+    print("{} - {}".format(number, taxi))

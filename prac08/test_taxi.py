@@ -16,3 +16,8 @@ print(new_car, '\n')
 fancy_car = SilverServiceTaxi('Hummer', 200, 4)
 print(fancy_car)
 
+fancy_car1 = SilverServiceTaxi('Hummer', 200, 2)
+print(fancy_car)
+
+
+fancy_car.drive()
