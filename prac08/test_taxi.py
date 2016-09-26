@@ -1,4 +1,4 @@
-from prac08.taxi_class import Taxi
+from prac08.taxi_class import Taxi, UnreliableCar
 
 new_taxi = Taxi('Prius 1', 100)
 new_taxi.drive(40)
@@ -6,4 +6,10 @@ print(new_taxi)
 new_taxi.start_fare()
 
 new_taxi.drive(100)
-print(new_taxi)
+print(new_taxi, '\n')
+
+new_car = UnreliableCar('The bomb', 100, 50)
+print(new_car)
+print('Distance driven:', new_car.drive(40))
+print(new_car)
+

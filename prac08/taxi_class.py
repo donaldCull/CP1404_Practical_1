@@ -67,3 +67,17 @@ class Taxi(Car):
         distance_driven = super().drive(distance)
         self.current_fare_distance += distance_driven
         return distance_driven
+
+class UnreliableCar(Car):
+    """specialized version of car that includes the reliability of car"""
+
+    def __init__(self, name, fuel, reliability):
+        super().__init__(name, fuel)
+        self.reliability = reliability
+    def drive(self, distance):
+        car_reliability = randint(1, 100)
+        if self.reliability < car_reliability:
+            distance_driven = super().drive(distance)
+            return distance_driven
+        else:
+            return "The car broke down!"
