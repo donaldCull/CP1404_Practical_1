@@ -31,8 +31,9 @@ while menu_choice != 'q':
     elif menu_choice == 'd':
         distance_requested = int(input("Drive how far? "))
         taxi_choice.drive(distance_requested)
-        print("Your {} trip cost you ${:.2f}".format(taxi_choice.name, taxi_choice.get_fare()))
-        bill_to_date += taxi_choice.get_fare()
+        taxi_choice_cost = taxi_choice.get_fare()
+        print("Your {} trip cost you ${:.2f}".format(taxi_choice.name,taxi_choice_cost))
+        bill_to_date += taxi_choice_cost
         print("Bill to date: ${:.2f}".format(bill_to_date))
         print(MENU)
         menu_choice = input(">>> ")

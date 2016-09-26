@@ -82,17 +82,18 @@ class UnreliableCar(Car):
         else:
             return "The car broke down!"
 
-class SilverServiceCar(Taxi):
+class SilverServiceTaxi(Taxi):
     """specialized version of taxi that scales price_per_km depending on how fancy the taxi is"""
     flag_fall = 4.5
+
     def __init__(self, name, fuel, fanciness):
-        Taxi.price_per_km = self.price_per_km * fanciness
+        self.price_per_km = self.price_per_km * fanciness
         super().__init__(name, fuel)
 
     def __str__(self):
-        return "{} plus flagfall of ${:.2f}".format(super().__str__(), SilverServiceCar.flag_fall)
+        return "{} plus flagfall of ${:.2f}".format(super().__str__(), SilverServiceTaxi.flag_fall)
 
     def get_fare(self):
-        cost = super().get_fare() + SilverServiceCar.flag_fall
+        cost = super().get_fare() + SilverServiceTaxi.flag_fall
         return cost
 
