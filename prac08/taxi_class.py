@@ -5,6 +5,14 @@ __author__ = 'Donald Cull'
 CP1404/CP5632 Practical
 Car class
 """
+
+
+"""
+CP1404/CP5632 Practical
+Car class
+"""
+
+
 class Car:
     """ represent a car object """
 
@@ -37,22 +45,18 @@ class Car:
 class Taxi(Car):
     """ specialised version of a Car that includes fare costs """
     price_per_km = 1.2
-
-    def __init__(self, name, fuel, fanciness=1):
+    def __init__(self, name, fuel):
         """ initialise a Taxi instance, based on parent class Car """
         super().__init__(name, fuel)
         self.current_fare_distance = 0
-        self.total_price_km = Taxi.price_per_km * fanciness
-
 
     def __str__(self):
         """ return a string representation like a car but with current fare distance"""
-        return "{}, {}km on current fare, ${:.2f}/km".format(super().__str__(), self.current_fare_distance,
-                                                             self.total_price_km)
+        return "{}, {}km on current fare, ${:.2f}/km".format(super().__str__(), self.current_fare_distance, self.price_per_km)
 
     def get_fare(self):
         """ get the price for the taxi trip """
-        return self.total_price_km * self.distance_driven
+        return self.price_per_km * self.current_fare_distance
 
     def start_fare(self):
         """ begin a new fare """
@@ -60,10 +64,9 @@ class Taxi(Car):
 
     def drive(self, distance):
         """ drive like parent Car but calculate fare distance as well"""
-        self.distance_driven = super().drive(distance)
-        self.current_fare_distance += self.distance_driven
-        return self.distance_driven
-
+        distance_driven = super().drive(distance)
+        self.current_fare_distance += distance_driven
+        return distance_driven
 
 class UnreliableCar(Car):
     """specialized version of car that includes the reliability of car"""
@@ -71,7 +74,6 @@ class UnreliableCar(Car):
     def __init__(self, name, fuel, reliability):
         super().__init__(name, fuel)
         self.reliability = reliability
-
     def drive(self, distance):
         car_reliability = randint(1, 100)
         if self.reliability < car_reliability:
@@ -80,22 +82,17 @@ class UnreliableCar(Car):
         else:
             return "The car broke down!"
 
-
-class SilverServiceTaxi(Taxi):
-    """Specialised version of taxi that scales the price_per_km based on the fanciness of the taxi"""
+class SilverServiceCar(Taxi):
+    """specialized version of taxi that scales price_per_km depending on how fancy the taxi is"""
     flag_fall = 4.5
-
     def __init__(self, name, fuel, fanciness):
-        super().__init__(name, fuel, fanciness)
-        self.current_fare_distance = 0
-
-    def drive(self, distance):
-        distance_driven = super().drive(distance)
-        self.current_fare_distance += distance_driven
-        return distance_driven
-
-    def get_fare(self):
-        return super().get_fare() + SilverServiceTaxi.flag_fall
+        Taxi.price_per_km = self.price_per_km * fanciness
+        super().__init__(name, fuel)
 
     def __str__(self):
-        return "{} plus flagfall of ${:.2f}".format(super().__str__(), SilverServiceTaxi.flag_fall)
+        return "{} plus flagfall of ${:.2f}".format(super().__str__(), SilverServiceCar.flag_fall)
+
+    def get_fare(self):
+        cost = super().get_fare() + SilverServiceCar.flag_fall
+        return cost
+
