@@ -22,15 +22,26 @@ while menu_choice != 'q':
             print("{} - {}".format(number, taxi))
             available_taxi_numbers.append(number)
         taxi_number = int(input("Choose taxi: "))
+        # taxi_number = 0
         while taxi_number not in available_taxi_numbers:
             print("Invalid number")
             taxi_number = int(input("Choose taxi: "))
+        taxi_choice = taxis[taxi_number]
         print("Bill to date: ${:.2f}".format(bill_to_date))
         print(MENU)
         menu_choice = input(">>> ")
-    else:
-        print("Drive how far?")
+        menu_choice = 'd'
+    elif menu_choice == 'd':
+        distance_requested = int(input("Drive how far? "))
+        # distance_requested = 333
+        taxi_choice.drive(distance_requested)
+        print("Your {} trip cost you ${:.2f}".format(taxi_choice.name, taxi_choice.get_fare()))
+        bill_to_date += taxi_choice.get_fare()
         print(MENU)
+        menu_choice = input(">>> ")
+
+
+
 
 
 
