@@ -39,15 +39,3 @@ while menu_choice != 'q':
         bill_to_date += taxi_choice.get_fare()
         print(MENU)
         menu_choice = input(">>> ")
-
-
-
-
-
-
-
-
-# new_taxi = SilverServiceTaxi('prius', 100)
-# new_taxi.drive(10)
-# print(new_taxi)
-# print("Total cost ${:.2f} expecting $28.50".format(new_taxi.get_fare()))
